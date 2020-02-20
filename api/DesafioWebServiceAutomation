@@ -1,0 +1,18 @@
+
+// Método que retorna o código 200
+pm.test ("O código de status é 200", function () {
+    pm.response.to.have.status (200);
+});
+
+// Método que realiza a busca pelos títulos que tenham George Lucas e Rick McCallum.
+pm.test("O resultado dos filmes está ok!", function () {
+    var jsonData = pm.response.json();
+    var list = [];
+    jsonData.results.forEach(function(element) {
+         if (element.director == "George Lucas" && element.producer.indexOf("Rick McCallum") != -1) {
+
+             list.push(element.title);
+         }
+    });
+    console.log(list);
+});
